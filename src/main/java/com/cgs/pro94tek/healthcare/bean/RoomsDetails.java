@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -41,6 +42,10 @@ public class RoomsDetails {
 	
 	@Column(name = "officeid", length=10)
 	private String officeid;
+	
+	private RoomCharges roomcharges;
+	
+	
 	
 
 	@OneToOne(optional=false,cascade=CascadeType.ALL, mappedBy="id")
@@ -112,6 +117,19 @@ public class RoomsDetails {
 	public void setOfficeid(String officeid) {
 		this.officeid = officeid;
 	}
+
+	@OneToOne
+	@JoinColumn(name="roomdetailsid")
+
+	public RoomCharges getRoomcharges() {
+		return roomcharges;
+	}
+
+
+	public void setRoomcharges(RoomCharges roomcharges) {
+		this.roomcharges = roomcharges;
+	}
+	
 	
 	
 }

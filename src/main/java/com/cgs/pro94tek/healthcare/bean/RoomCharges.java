@@ -88,8 +88,8 @@ public class RoomCharges {
 	}
 	
 	
-	@OneToOne(optional=false,cascade=CascadeType.ALL, mappedBy="roomdetailsid")
-	@JoinColumn(name="id")
+	@OneToOne()
+	@JoinColumn(name="roomdetailsid")
 	public RoomsDetails getRoomsdetails() {
 		return roomsdetails;
 	}

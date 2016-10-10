@@ -30,12 +30,14 @@ public class SchoolController {
 	CommonUtils commonUtils = new CommonUtils();
 	InventoryRequestResponse response = new InventoryRequestResponse();
 	InventoryURIConstant inventoryURIConstants = new InventoryURIConstant();
+	
 
 
 	@RequestMapping(value = InventoryURIConstant.GET_SCHOOL_DETAILS, method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody InventoryRequestResponse fetchSchoolDetailsById(@PathVariable("schoolId") String schoolId){
 
 		logger.info("school detaials schoolid . : "+schoolId);
+		System.out.println("hiii");
 		SchoolModal schoolModal = new SchoolModal();
 
 		try {
