@@ -1,15 +1,18 @@
 package com.cgs.pro94tek.healthcare.bean;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @Entity
@@ -27,15 +30,6 @@ public class Company {
 
 	@Column(name="signatureInNameOf", length=20)
 	private String signatureInNameOf;
-
-	@Column(name="mailingaddress", length=50)
-	private String mailingaddress;
-
-	@Column(name="billingaddress", length=20)
-	private String billingaddress;
-
-	@Column(name="corporateaddress", length=20)
-	private String corporateaddress;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateOfIncorporation")
@@ -75,6 +69,10 @@ public class Company {
 	
 	@Column(name="officeId", length=20)
 	private String officeId;
+	
+	@OneToOne(mappedBy="addressid", cascade=CascadeType.ALL)
+	private CompanyAddress companyaddress;
+
 
 	public Long getId() {
 		return id;
@@ -100,29 +98,6 @@ public class Company {
 		this.signatureInNameOf = signatureInNameOf;
 	}
 
-	public String getMailingaddress() {
-		return mailingaddress;
-	}
-
-	public void setMailingaddress(String mailingaddress) {
-		this.mailingaddress = mailingaddress;
-	}
-
-	public String getBillingaddress() {
-		return billingaddress;
-	}
-
-	public void setBillingaddress(String billingaddress) {
-		this.billingaddress = billingaddress;
-	}
-
-	public String getCorporateaddress() {
-		return corporateaddress;
-	}
-
-	public void setCorporateaddress(String corporateaddress) {
-		this.corporateaddress = corporateaddress;
-	}
 
 	public Date getDateOfIncorporation() {
 		return dateOfIncorporation;
@@ -220,6 +195,22 @@ public class Company {
 		this.officeId = officeId;
 	}
 
+	//@OneToOne
+	//@JoinColumn(name="companyAddress")	
+	//@JoinColumn(name="addressid")
+	
+	/*@OneToOne
+	@JoinColumn(name="companyaddress", unique= true, nullable=true, insertable=true, updatable=true) */
+	public CompanyAddress getCompanyaddress() {
+		return companyaddress;
+	}
+
+	public void setCompanyaddress(CompanyAddress companyaddress) {
+		this.companyaddress = companyaddress;
+	}
+	
+
+	
 	
 	
 }

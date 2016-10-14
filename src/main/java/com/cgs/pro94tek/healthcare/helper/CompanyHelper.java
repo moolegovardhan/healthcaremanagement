@@ -20,10 +20,6 @@ public class CompanyHelper {
 		for(Company companyobj : company){
 			CompanyModal companymodal1 = new CompanyModal();
 			companymodal1.setDisplayName(companyobj.getDisplayName());
-			companymodal1.setSignatureInNameOf(companyobj.getSignatureInNameOf());
-			companymodal1.setMailingaddress(companyobj.getMailingaddress());
-			companymodal1.setBillingaddress(companyobj.getBillingaddress());
-			companymodal1.setCorporateaddress(companyobj.getCorporateaddress());
 			companymodal1.setDateOfIncorporation(df.format(companyobj.getDateOfIncorporation()));
 			companymodal1.setLogo(companyobj.getLogo());
 			companymodal1.setMobileNo(companyobj.getMobileNo());
@@ -51,9 +47,6 @@ public class CompanyHelper {
 		Company company = new Company();
 		company.setDisplayName(companyModal.getDisplayName());
 		company.setSignatureInNameOf(companyModal.getSignatureInNameOf());
-		company.setMailingaddress(companyModal.getMailingaddress());
-		company.setBillingaddress(companyModal.getBillingaddress());
-		company.setCorporateaddress(companyModal.getCorporateaddress());
 		company.setDateOfIncorporation(new Date());
 		company.setLogo(companyModal.getLogo());
 		company.setMobileNo(companyModal.getMobileNo());

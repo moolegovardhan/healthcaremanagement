@@ -16,7 +16,6 @@ import javax.persistence.UniqueConstraint;
 @Table (name = "roomtype", uniqueConstraints = { @UniqueConstraint (columnNames = "roomtype")})
 public class RoomType {
 	
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO, generator = "ID_seq")
 	@SequenceGenerator (sequenceName = "room_id_seq", name = "ID_seq")

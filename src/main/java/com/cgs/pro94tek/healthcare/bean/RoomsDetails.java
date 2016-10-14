@@ -1,31 +1,32 @@
 package com.cgs.pro94tek.healthcare.bean;
 
 import java.util.Date;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table (name = "rooms_details", uniqueConstraints = { @UniqueConstraint (columnNames = "roomid")})
+@Table (name = "rooms_details", uniqueConstraints = { @UniqueConstraint (columnNames = {"roomid","roomdetailsid"})})
 public class RoomsDetails {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id", unique = true, nullable = false)
-	private Long id;
-	
+	@Column (name = "roomdetailsid", unique = true, nullable = false)
+	private Long roomdetailsid;
 	
 	@Column (name = "roomid", unique = true, nullable = false)
 	private Long roomid;
 	
-	@Column(name="roomname", length=100)
+	@Column(name="room_name", length=100)
 	private String roomname;
 	
 	@Column (name = "occupancy", nullable = false)
@@ -40,26 +41,26 @@ public class RoomsDetails {
 	@Column (name = "status", nullable = false)
 	private String status;
 	
-	@Column(name = "officeid", length=10)
-	private String officeid;
+	/*@Column(name = "officeid", length=10)
+	private String officeid;*/
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	private Room room;
 	
+	@OneToOne
+	@JoinColumn(name="roomdetailsid")
 	private RoomCharges roomcharges;
 	
-	
-	
-
-	@OneToOne(optional=false,cascade=CascadeType.ALL, mappedBy="id")
-	public Long getId() {
-		return id;
+	public Long getRoomdetailsid() {
+		return roomdetailsid;
 	}
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRoomdetailsid(Long roomdetailsid) {
+		this.roomdetailsid = roomdetailsid;
 	}
 
-
-	//@OneToOne(cascade=CascadeType.ALL, mappedBy="roomid", targetEntity=RoomCharges.class)
 
 	public Long getRoomid() {
 		return roomid;
@@ -110,26 +111,29 @@ public class RoomsDetails {
 		this.status = status;
 	}
 
-	public String getOfficeid() {
+/*	public String getOfficeid() {
 		return officeid;
 	}
 
 	public void setOfficeid(String officeid) {
 		this.officeid = officeid;
-	}
-
-	@OneToOne
-	@JoinColumn(name="roomdetailsid")
+	}*/
 
 	public RoomCharges getRoomcharges() {
 		return roomcharges;
 	}
 
-
 	public void setRoomcharges(RoomCharges roomcharges) {
 		this.roomcharges = roomcharges;
 	}
-	
-	
-	
+
+
+	public Room getRoom() {
+		return room;
+	}
+
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 }

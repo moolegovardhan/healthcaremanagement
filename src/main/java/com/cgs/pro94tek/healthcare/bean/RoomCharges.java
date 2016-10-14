@@ -2,19 +2,16 @@ package com.cgs.pro94tek.healthcare.bean;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table (name = "room_charges", uniqueConstraints = { @UniqueConstraint (columnNames = "id")})
+@Table (name = "room_charges", uniqueConstraints = { @UniqueConstraint (columnNames = {"id", "roomdetailsid"})})
 public class RoomCharges {
 	
 	@Id
@@ -23,7 +20,7 @@ public class RoomCharges {
 	
 	private Long id;
 	
-	@Column(name = "roomdetailsid", length=10)
+	@Column(name = "roomdetailsid", length=10, unique=true, nullable=false)
 	private Long roomdetailsid;
 	
 	@Column(name = "chargeid", length=10)
@@ -32,17 +29,14 @@ public class RoomCharges {
 	@Column (name = "status", nullable = false,  length=10)
 	private String status;
 	
-	@Column (name = "createdDate", nullable = false)
+	@Column (name = "effectiveDate")
 	private Date effectivedate;
 	
-	@Column (name = "createdDate", nullable = false)
+	@Column (name = "createdDate", insertable= true, updatable=false)
 	private Date createdDate;
 	
 	@Column (name = "createdBy", nullable = false)
-	private String createdBy;
-
-	private RoomsDetails roomsdetails;
-	
+	private String createdBy;	
 	
 	public Long getId() {
 		return id;
@@ -86,18 +80,4 @@ public class RoomCharges {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	
-	
-	@OneToOne()
-	@JoinColumn(name="roomdetailsid")
-	public RoomsDetails getRoomsdetails() {
-		return roomsdetails;
-	}
-	public void setRoomdetails(RoomsDetails roomsdetails) {
-		this.roomsdetails = roomsdetails;
-	}
-
-
-
-
 }

@@ -13,7 +13,6 @@ public interface IWardTypeDAO {
 	   public List<WardType> getWardTypeByWardId (String wardId) throws DataAccessException;
 	   public void createOrUpdateWardType (WardType wardtype) throws DataAccessException;
 	   public boolean deleteWardById(String wardId) throws DataAccessException;
-	   
 	   public void deleteWardType (String wardtype) throws DataAccessException;
 
 }

@@ -1,8 +1,5 @@
 package com.cgs.pro94tek.healthcare.modal;
 
-import java.util.Date;
-import java.util.Set;
-
 import com.cgs.pro94tek.healthcare.bean.WardType;
 
 public class WardModal {

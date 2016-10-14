@@ -4,8 +4,8 @@ import com.cgs.pro94tek.healthcare.bean.RoomType;
 
 public class RoomModal {
 	
-	private Long id;
-	private RoomType roomtype;
+	private Long roomid;
+	private RoomType roomtypes;
 	private String roomname;
 	private String officeid;
 	private String totalrooms;
@@ -17,18 +17,21 @@ public class RoomModal {
 	private String finalprice;
 	private String charges;
 	private String totaloccupied;
-	public Long getId() {
-		return id;
+	
+	public Long getRoomid() {
+		return roomid;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setRoomid(Long roomid) {
+		this.roomid = roomid;
 	}
-	public RoomType getRoomtype() {
-		return roomtype;
+	
+	public RoomType getRoomtypes() {
+		return roomtypes;
 	}
-	public void setRoomtype(RoomType roomtype) {
-		this.roomtype = roomtype;
+	public void setRoomtypes(RoomType roomtypes) {
+		this.roomtypes = roomtypes;
 	}
+	
 	public String getRoomname() {
 		return roomname;
 	}

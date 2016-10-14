@@ -21,6 +21,7 @@ public class RoomHelper {
 		for (Room roomobj : room) {
 			RoomModal  roommodal1 = new RoomModal();
 			roommodal1.setRoomname((roomobj.getRoomname()));
+			roommodal1.setRoomtypes(roomobj.getRoomtype());
 			roommodal1.setRoomcost(roomobj.getRoomcost());
 			roommodal1.setOfficeid(roomobj.getOfficeid());
 			roommodal1.setTotaloccupied(roomobj.getTotaloccupied());
@@ -31,7 +32,7 @@ public class RoomHelper {
 			roommodal1.setStatus(roomobj.getStatus());
 			roommodal1.setFinalprice(roomobj.getFinalprice());
 			roommodal1.setCharges(roomobj.getCharges());
-			roommodal1.setId(roomobj.getId());
+			roommodal1.setRoomid(roomobj.getRoomid());
 			roomModals.add(roommodal1);
 		}
 		
@@ -51,6 +52,7 @@ public class RoomHelper {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
 		Room room = new Room();
 		room.setRoomname(roomModal.getRoomname());
+		room.setRoomtype(roomModal.getRoomtypes());
 		room.setOfficeid(roomModal.getOfficeid());
 		room.setTotaloccupied(roomModal.getTotaloccupied());
 		room.setDiscount(roomModal.getDiscount());
@@ -59,7 +61,7 @@ public class RoomHelper {
 		room.setStatus(roomModal.getStatus());
 		room.setFinalprice(roomModal.getFinalprice());
 		room.setCharges(roomModal.getCharges());
-		room.setId(roomModal.getId());
+		room.setRoomid(roomModal.getRoomid());
 		
 		return room;
 	}

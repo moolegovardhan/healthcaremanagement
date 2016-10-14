@@ -1,10 +1,11 @@
 package com.cgs.pro94tek.healthcare.bean;
 
 import java.util.Date;
-import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,17 +13,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @Entity
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_DEFAULT)
-@Table(name="rooms", uniqueConstraints = { @UniqueConstraint (columnNames = {"id", "officeid"}) }) 
+@Table(name="rooms", uniqueConstraints = { @UniqueConstraint (columnNames = { "officeid","roomid"}) }) 
 public class Room {
 	
-
-	private Long id;
-	private RoomType roomtype;
+	private Long roomid;
+	
+	//@OneToOne
+	//@JoinColumn(name="roomtype")
+	//@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@JoinColumn(name="roomtype", referencedColumnName="id")
+	//private RoomType roomtype;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	private RoomsDetails roomsdetails;
+	
 	private String roomname;
 	private String officeid;
 	private String totalrooms;
@@ -34,28 +43,20 @@ public class Room {
 	private String finalprice;
 	private String charges;
 	private String totaloccupied;
+	private RoomType roomtype;
 	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return id;
+	@Column (name = "roomid", unique = true, nullable = false)
+	public Long getRoomid() {
+		return roomid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRoomid(Long roomid) {
+		this.roomid = roomid;
 	}
 	
-	@OneToOne
-	@JoinColumn(name="roomtype")
-	public RoomType getRoomtype() {
-		return roomtype;
-	}
-
-	public void setRoomtype(RoomType roomtype) {
-		this.roomtype = roomtype;
-	}
 	
 	@OneToOne
 	@JoinColumn(name="roomid")
@@ -174,6 +175,16 @@ public class Room {
 
 	public void setTotaloccupied(String totaloccupied) {
 		this.totaloccupied = totaloccupied;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="roomtype")
+	public RoomType getRoomtype() {
+		return roomtype;
+	}
+
+	public void setRoomtype(RoomType roomtype) {
+		this.roomtype = roomtype;
 	}
 	
 
